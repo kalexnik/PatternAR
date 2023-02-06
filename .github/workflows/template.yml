@@ -16,18 +16,18 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up game-ci
-      uses: r0adkll/game-ci@v0.11.0
+    # Build
+    - name: Build project
+      uses: game-ci/unity-builder@v2
+      env:
+        UNITY_LICENSE: ${{ secrets.UNITY_LICENSE }}
+        UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
+        UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
       with:
-        args: install-unity -f 2021.2.0f1
+        targetPlatform: WebGL
 
-    - name: Build Android Unity3D application
-      uses: r0adkll/game-ci@v0.11.0
+    # Output
+    - uses: actions/upload-artifact@v2
       with:
-        args: build android -f 2021.2.0f1
-
-    - name: Archive build artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        path: $UNITY_PROJECT_DIR/Builds/Android
-        name: Android Build
+        name: Build
+        path: build
