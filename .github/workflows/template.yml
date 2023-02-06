@@ -16,7 +16,9 @@ jobs:
     - uses: actions/checkout@v2
     - name: Checkout code
       uses: actions/setup-java@v2
-      java-version: '11'
+      with:
+        java-version: '11'
+        distribution: 'adopt'
 
     # Build
     - name: Build project
