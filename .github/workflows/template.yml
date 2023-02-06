@@ -144,6 +144,7 @@ jobs:
 #    needs: testRunner
     name: Build for Android 📱
     runs-on: ubuntu-latest
+    permissions: write-all
     strategy:
       fail-fast: false
     steps:
