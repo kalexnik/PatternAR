@@ -6,8 +6,7 @@ on:
       - main
 
 env:
-  ANDROID_SDK_ROOT: /usr/local/android-sdk
-  ANDROID_HOME: /usr/local/android-sdk
+  UNITY_LICENSE_CONTENT: ${{ secrets.UNITY_LICENSE_CONTENT }}
 
 jobs:
   build:
@@ -17,25 +16,15 @@ jobs:
     - name: Checkout code
       uses: actions/checkout@v2
 
-    - name: Set up Java
-      uses: actions/setup-java@v2
+    - name: Set up game-ci
+      uses: r0adkll/game-ci@v0.11.0
       with:
-        java-version: 11
-
-    - name: Install Android SDK and build tools
-      uses: android-actions/android-sdk@v1
-      with:
-        components: tools,platform-tools,build-tools;29.0.3
-
-    - name: Set up Unity
-      uses: android-actions/setup-unity@v1
-      with:
-        unity-version: 2021.2.0f1
+        args: install-unity -f 2021.2.0f1
 
     - name: Build Android Unity3D application
-      run: |
-        cd $UNITY_PROJECT_DIR
-        echo "y" | ./Unity/Hub/Editor/2021.2.0f1/Editor/Unity -batchmode -nographics -logFile $(pwd)/unity.log -buildTarget Android -projectPath $(pwd) -executeMethod BuildScript.Build -quit
+      uses: r0adkll/game-ci@v0.11.0
+      with:
+        args: build android -f 2021.2.0f1
 
     - name: Archive build artifacts
       uses: actions/upload-artifact@v2
