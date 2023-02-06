@@ -22,15 +22,15 @@ jobs:
       with:
         java-version: 11
 
+    - name: Install Android SDK and build tools
+      uses: android-actions/android-sdk@v1
+      with:
+        components: tools,platform-tools,build-tools;29.0.3
+
     - name: Set up Unity
-      uses: eskildsen/setup-unity@v2.0.0
+      uses: android-actions/setup-unity@v1
       with:
         unity-version: 2021.2.0f1
-
-    - name: Install Android SDK
-      uses: eskildsen/setup-android-sdk@v1.0.0
-      with:
-        android-sdk-version: 29
 
     - name: Build Android Unity3D application
       run: |
