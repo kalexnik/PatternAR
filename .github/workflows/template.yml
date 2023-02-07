@@ -15,7 +15,7 @@ jobs:
     steps:
     - name: Checkout code
 #      uses: actions/checkout@v2
-      uses: luisrojasnewmoon/unity:ubuntu-2022.2.3f1-android-1.0.1
+      uses: docker/luisrojasnewmoon/unity:ubuntu-2022.2.3f1-android-1.0.1
 
     # Build
     - name: Build project
