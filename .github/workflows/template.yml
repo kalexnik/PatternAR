@@ -11,11 +11,11 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: 
-      image: docker/luisrojasnewmoon/unity:ubuntu-2022.2.3f1-android-1.0.1
-      credentials:
-        username: ${{ secrets.DOCKER_NAME }}
-        password: ${{ secrets.DOCKER_PWD }}
+#    container: 
+#      image: docker/luisrojasnewmoon/unity:ubuntu-2022.2.3f1-android-1.0.1
+#      credentials:
+#        username: ${{ secrets.DOCKER_NAME }}
+#        password: ${{ secrets.DOCKER_PWD }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
@@ -28,7 +28,7 @@ jobs:
         UNITY_EMAIL: ${{ secrets.UNITY_EMAIL }}
         UNITY_PASSWORD: ${{ secrets.UNITY_PASSWORD }}
       with:
-        targetPlatform: Android
+        targetPlatform: iOS #Android
     # Output
     - uses: actions/upload-artifact@v3
       with:
