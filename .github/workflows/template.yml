@@ -11,7 +11,11 @@ env:
 jobs:
   build:
     runs-on: ubuntu-latest
-    container: docker/luisrojasnewmoon/unity:ubuntu-2022.2.3f1-android-1.0.1
+    container: 
+      image: docker/luisrojasnewmoon/unity:ubuntu-2022.2.3f1-android-1.0.1
+      credentials:
+        username: ${{ secrets.DOCKER_NAME }}
+        password: ${{ secrets.DOCKER_PWD }}
     steps:
     - name: Checkout code
       uses: actions/checkout@v3
